@@ -5,7 +5,7 @@ class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <p className="App-intro">
+        <p className="App-intro text-red">
           To get started, edit <code>src/App.tsx</code> and save to reload.
         </p>
       </div>
