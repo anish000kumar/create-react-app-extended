@@ -26,11 +26,8 @@ module.exports = function(
   originalDirectory,
   template
 ) {
-  const ownPackageName = require(path.join(
-    __dirname,
-    '..',
-    'package.json'
-  )).name;
+  const ownPackageName = require(path.join(__dirname, '..', 'package.json'))
+    .name;
   const ownPath = path.join(appPath, 'node_modules', ownPackageName);
   const appPackage = require(path.join(appPath, 'package.json'));
   const useYarn = fs.existsSync(path.join(appPath, 'yarn.lock'));
@@ -42,8 +39,16 @@ module.exports = function(
   appPackage.scripts = {
     start: 'react-scripts-ts start',
     build: 'react-scripts-ts build',
+    lint: "tslint 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
+    'lint-fix': "tslint --fix 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
     test: 'react-scripts-ts test --env=jsdom',
     eject: 'react-scripts-ts eject',
+  };
+  // add alias
+  appPackage.alias = {
+    '@': '',
+    '@components': 'components',
+    '@views': 'views',
   };
 
   fs.writeFileSync(
@@ -106,6 +111,9 @@ module.exports = function(
   // Install dev dependencies
   const types = [
     '@types/node',
+    'node-sass',
+    'sass-loader',
+    'style-loader',
     '@types/react',
     '@types/react-dom',
     '@types/jest',
@@ -144,12 +152,16 @@ module.exports = function(
   // which doesn't install react and react-dom along with react-scripts
   // or template is presetend (via --internal-testing-template)
   if (!isReactInstalled(appPackage) || template) {
-    console.log(`Installing react and react-dom using ${command}...`);
+    console.log(`Installing react, react-dom and tailwind using ${command}...`);
     console.log();
 
-    const proc = spawn.sync(command, args.concat(['react', 'react-dom']), {
-      stdio: 'inherit',
-    });
+    const proc = spawn.sync(
+      command,
+      args.concat(['react', 'react-dom', 'tailwindcss']),
+      {
+        stdio: 'inherit',
+      }
+    );
     if (proc.status !== 0) {
       console.error(`\`${command} ${args.join(' ')}\` failed`);
       return;
@@ -213,6 +225,8 @@ module.exports = function(
 function isReactInstalled(appPackage) {
   const dependencies = appPackage.dependencies || {};
 
-  return typeof dependencies.react !== 'undefined' &&
-    typeof dependencies['react-dom'] !== 'undefined';
+  return (
+    typeof dependencies.react !== 'undefined' &&
+    typeof dependencies['react-dom'] !== 'undefined'
+  );
 }

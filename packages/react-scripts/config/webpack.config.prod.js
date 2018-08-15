@@ -9,6 +9,7 @@
 'use strict';
 
 const autoprefixer = require('autoprefixer');
+const tailwindcss = require('tailwindcss');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -231,6 +232,7 @@ module.exports = {
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
                         plugins: () => [
+                          tailwindcss(paths.appTailwind),
                           require('postcss-flexbugs-fixes'),
                           autoprefixer({
                             browsers: [
