@@ -40,6 +40,7 @@ module.exports = function(
     start: 'react-scripts-ts start',
     build: 'react-scripts-ts build',
     lint: "tslint 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
+    tailwind: './node_modules/.bin/tailwind init',
     'lint-fix': "tslint --fix 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
     test: 'react-scripts-ts test --env=jsdom',
     eject: 'react-scripts-ts eject',
