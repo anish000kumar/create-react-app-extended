@@ -2,13 +2,13 @@
   "name": "react-scripts-extended",
   "version": "1.0.0",
   "description": "Configuration and scripts for Create React App.",
-  "repository": "wmonk/create-react-app",
+  "repository": "anish000kumar/create-react-app-extended",
   "license": "BSD-3-Clause",
   "engines": {
     "node": ">=6"
   },
   "bugs": {
-    "url": "https://github.com/wmonk/create-react-app/issues"
+    "url": "https://github.com/anish000kumar/create-react-app-extended/issues"
   },
   "files": ["bin", "config", "scripts", "template", "utils"],
   "bin": {
