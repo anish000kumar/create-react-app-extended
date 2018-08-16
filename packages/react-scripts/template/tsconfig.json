@@ -19,9 +19,13 @@
     "noUnusedLocals": true,
     "paths": {
       "@/*": ["src/*"],
+      "@atoms/*": ["src/@lib/atoms/*"],
+      "@sections/*": ["src/@lib/sections/*"],
+      "@layouts/*": ["src/@lib/layouts/*"],
       "@components/*": ["src/components/*"],
       "@views/*": ["src/views/*"],
-      "@store/*": ["src/store/*"]
+      "@store/*": ["src/store/*"],
+      "@routes/*": ["src/routes/*"]
     }
   },
   "exclude": [

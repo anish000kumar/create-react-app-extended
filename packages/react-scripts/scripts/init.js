@@ -37,6 +37,7 @@ module.exports = function(
 
   // Setup the script rules
   appPackage.scripts = {
+    init: 'yarn add tailwindcss react-router-dom',
     start: 'react-scripts-ts start',
     build: 'react-scripts-ts build',
     lint: "tslint 'src/**/*.{js,jsx,ts,tsx}' -t verbose",
@@ -48,8 +49,13 @@ module.exports = function(
   // add alias
   appPackage.alias = {
     '@': '',
+    '@atoms': '@lib/atoms',
+    '@sections': '@lib/sections',
+    '@layouts': '@lib/layouts',
     '@components': 'components',
     '@views': 'views',
+    '@store': 'store',
+    '@routes': 'routes',
   };
 
   fs.writeFileSync(
@@ -208,6 +214,8 @@ module.exports = function(
   );
   console.log();
   console.log('We suggest that you begin by typing:');
+  console.log();
+  console.log('npm run init');
   console.log();
   console.log(chalk.cyan('  cd'), cdpath);
   console.log(`  ${chalk.cyan(`${displayedCommand} start`)}`);
